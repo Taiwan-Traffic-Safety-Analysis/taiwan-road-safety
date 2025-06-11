@@ -11,4 +11,11 @@ An in-depth look at traffic safety and an analysis of traffic accidents in Taiwa
    I hope there's a better way to do this, but it's possible to get deaths by district (區) and month-year from the dashboard
 4. Hotspots map       
    There's also a map that shows accidents by year including location and cause of the accident: https://roadsafety.tw/AccLocCbi
-5.    
+5. School hotspots map      
+   It's possible to get all the locations of accidents in a 1km radius around schools. We could theoretically use that to find all the point locations of accidents across the city. The annoying thing is that it wouldn't contain info about the cause of the accident...    
+  https://roadsafety.tw/SchoolHotSpots#
+6. Police statistics: https://ba.npa.gov.tw/statis/webMain.aspx?k=defjsp       
+   This includes data about deaths, accidents stratified by city, year and cause.
+   There is also data about tickets issued for things like speeding, dangerous driving, DUIs etc.
+   Tickets are stratified by city, month and type of vehicle.
+   Dui's are stratified by city, month, injuries and deaths. 
