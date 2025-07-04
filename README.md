@@ -1,7 +1,11 @@
 # taiwan-road-safety
-An in-depth look at traffic safety and an analysis of traffic accidents in Taiwan
+An in-depth look at traffic safety and an analysis of traffic accidents in Taiwan    
 
-## Data sources
+## Best data source
+1. Taiwan's data portal: https://data.gov.tw/dataset/13139
+
+
+## Other Data sources
 1. Ministry of Transportation, Road Traffic Safety Portal Site: https://168.motc.gov.tw/en/countrydeadhurt/%E8%87%BA%E5%8C%97%E5%B8%82
 2. Ministry of Transportation, statistics portal: https://statis.motc.gov.tw/motc/Statistics/Display?Seq=133
    There is an english site, but it doesn't have all the same indicators
