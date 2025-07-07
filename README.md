@@ -2,7 +2,7 @@
 An in-depth look at traffic safety and an analysis of traffic accidents in Taiwan    
 
 ## Best data source
-1. Taiwan's data portal: https://data.gov.tw/dataset/13139
+1. Taiwan's data portal: https://data.gov.tw/dataset/13139 (only 2025)
 
 
 ## Other Data sources
@@ -23,3 +23,29 @@ An in-depth look at traffic safety and an analysis of traffic accidents in Taiwa
    There is also data about tickets issued for things like speeding, dangerous driving, DUIs etc.
    Tickets are stratified by city, month and type of vehicle.
    Dui's are stratified by city, month, injuries and deaths. 
+   
+## Data Sources by municipality
+
+### Taipei
+- Taiwan's data portal: https://data.gov.tw/dataset/130110
+  .csv data by year containing A1 and A2 accidents
+  from 2012 (TW Year 101) - 2024 (TW Year 113) with at least the following fields (later years have 71 variables):
+  - 發生年度 - Year of Occurrence
+  - 發生月 - Month of Occurrence
+  - 發生日 - Day of Occurrence
+  - 發生時-Hours - Hour of Occurrence
+  - 發生分 - Minute of Occurrence
+  - 處理別-編號 - Handling Type - Number
+  - 區序 - District Number
+  - 肇事地點 - Accident Location
+  - 死亡人數 - Number of Fatalities
+  - 受傷人數 - Number of Injuries
+  - 當事人序號 - Party Involved Number
+  - 車種 - Vehicle Type
+  - 性別 - Gender
+  - 年齡 - Age
+  - 受傷程度 - Injury Severity
+  - 天候 - Weather Conditions
+  - 速限-速度限制 - Speed Limit
+  - 道路型態 - Road Type
+  - 事故位置 - Accident Position
