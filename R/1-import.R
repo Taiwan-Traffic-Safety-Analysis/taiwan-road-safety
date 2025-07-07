@@ -166,7 +166,12 @@ for(link in data_links){
     "15事故類型及型態" = "accident_type_15",
     "安全帽" = "helmet"
   )
+  name_map_taipei <- setNames(names(name_map_taipei), name_map_taipei)
+  
+  # translate columns
+    taipei_accidents_df <- taipei_accidents_df %>% 
+    rename(!!!name_map_taipei)
 
-  test <- taipei_accidents_df %>%
-    rename_with(name_map_taipei)
-
+# save dataframe as .csv
+  fwrite(taipei_accidents_df, "data/Taipei Accidents (2012-2024).csv")
+  
