@@ -1,5 +1,5 @@
 # Load the data
-library(dplyr)
+library(dplyr,data.table)
 
 
 # create a blank list for the data
@@ -27,3 +27,8 @@ for(file in list.files("data", full.names = TRUE)){
 
 # combine the list into a dataframe
 data_set <- data_list |> dplyr::bind_rows()
+
+
+# Load Historical Taipei Traffic Data From Data Folder --------------------
+taipei_historical_zh <- fread("data/Taipei accidents (2012-2024).csv")
+
