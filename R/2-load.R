@@ -1,5 +1,6 @@
 # Load the data
-library(dplyr,data.table)
+library(dplyr)
+library(data.table)
 
 
 # create a blank list for the data
@@ -31,4 +32,9 @@ data_set <- data_list |> dplyr::bind_rows()
 
 # Load Historical Taipei Traffic Data From Data Folder --------------------
 taipei_historical_zh <- fread("data/Taipei accidents (2012-2024).csv")
+
+
+# Load Historical Taipei Traffic Data Dictionary  -------------------------
+dictionary_zh_en <- fread("data/Taipei_Accidents (2012-2024)_Dictionary zhTW - en.csv")
+
 
