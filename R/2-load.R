@@ -34,7 +34,13 @@ data_set <- data_list |> dplyr::bind_rows()
 taipei_historical_zh <- fread("data/Taipei accidents (2012-2024).csv")
 
 
-# Load Historical Taipei Traffic Data Dictionary  -------------------------
-dictionary_zh_en <- fread("data/Taipei_Accidents (2012-2024)_Dictionary zhTW - en.csv")
+# load historical weather in environment ----------------------------------
+weather_history_taipei_daily <- fread("data/weather_history_taipei_daily.csv")
+weather_history_taipei_hourly <- fread("data/weather_history_taipei_hourly.csv")
+
+
+# load historical weather and traffic dataset in environment --------------
+tpe_hist_accident_weather <- fread("data/tpe_hist_accident_weather.csv")
+
 
 

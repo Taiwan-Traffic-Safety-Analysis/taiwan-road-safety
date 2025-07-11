@@ -180,62 +180,88 @@ for(link in data_links){
     # !!! the open meteo package also has location based weather data 
     # see: https://open-meteo.com/en/docs/air-quality-api
     
-  # # Download daily data
-  #   weather_history_taipei_daily <-  weather_history(location = "Taipei",
-  #                                                     start = "2014-01-01",
-  #                                                     end = "2024-12-31", 
-  #                                                     daily = list("weather_code",
-  #                                                                  "temperature_2m_mean",
-  #                                                                  "temperature_2m_max",
-  #                                                                  "temperature_2m_min",
-  #                                                                  "apparent_temperature_mean",
-  #                                                                  "apparent_temperature_max", 
-  #                                                                  "apparent_temperature_min",
-  #                                                                  "sunrise",
-  #                                                                  "sunset",
-  #                                                                  "daylight_duration",
-  #                                                                  "sunshine_duration",
-  #                                                                  "precipitation_sum",
-  #                                                                  "precipitation_hours",
-  #                                                                  "wind_speed_10m_max",
-  #                                                                  "wind_gusts_10m_max",
-  #                                                                  "wind_direction_10m_dominant")
-  #                                                     )
-  # 
-  # # Download hourly data
-  #   weather_history_taipei_hourly <-  weather_history(location = "Taipei",
-  #                                                     start = "2014-01-01",
-  #                                                     end = "2024-12-31", 
-  #                                                     hourly = list("temperature_2m",
-  #                                                                   "precipitation",
-  #                                                                   "windspeed_10m", 
-  #                                                                   "cloudcover",
-  #                                                                   "apparent_temperature",
-  #                                                                   "weather_code",
-  #                                                                   "wind_direction_10m",
-  #                                                                   "wind_gusts_10m")
-  #                                                     )
-  # # Save both datasets
-  #   fwrite(weather_history_taipei_daily, "data/weather_history_taipei_daily.csv",
-  #          sep = ",",                 
-  #          quote = TRUE,              
-  #          na = "",                   
-  #          bom = TRUE,                
-  #          row.names = FALSE,         
-  #          dateTimeAs = "ISO",       
-  #          logical01 = FALSE)
-  #   fwrite(weather_history_taipei_hourly, "data/weather_history_taipei_hourly.csv",
-  #          sep = ",",                 
-  #          quote = TRUE,              
-  #          na = "",                   
-  #          bom = TRUE,                
-  #          row.names = FALSE,         
-  #          dateTimeAs = "ISO",       
-  #          logical01 = FALSE) 
+  # Download daily data
+    weather_history_taipei_daily <-  weather_history(location = "Taipei",
+                                                      start = "2014-01-01",
+                                                      end = "2024-12-31",
+                                                      daily = list("weather_code",
+                                                                   "temperature_2m_mean",
+                                                                   "temperature_2m_max",
+                                                                   "temperature_2m_min",
+                                                                   "apparent_temperature_mean",
+                                                                   "apparent_temperature_max",
+                                                                   "apparent_temperature_min",
+                                                                   "sunrise",
+                                                                   "sunset",
+                                                                   "daylight_duration",
+                                                                   "sunshine_duration",
+                                                                   "precipitation_sum",
+                                                                   "precipitation_hours",
+                                                                   "wind_speed_10m_max",
+                                                                   "wind_gusts_10m_max",
+                                                                   "wind_direction_10m_dominant")
+                                                      )
 
-  # load both in environment
-    weather_history_taipei_daily <- fread("data/weather_history_taipei_daily.csv")
-    weather_history_taipei_hourly <- fread("data/weather_history_taipei_hourly.csv")
+  # Download hourly data
+    weather_history_taipei_hourly <-  weather_history(location = "Taipei",
+                                                      start = "2014-01-01",
+                                                      end = "2024-12-31",
+                                                      hourly = list("temperature_2m",
+                                                                    "precipitation",
+                                                                    "windspeed_10m",
+                                                                    "cloudcover",
+                                                                    "apparent_temperature",
+                                                                    "weather_code",
+                                                                    "wind_direction_10m",
+                                                                    "wind_gusts_10m")
+                                                      )
+  # Save both datasets
+    fwrite(weather_history_taipei_daily, "data/weather_history_taipei_daily.csv",
+           sep = ",",
+           quote = TRUE,
+           na = "",
+           bom = TRUE,
+           row.names = FALSE,
+           dateTimeAs = "ISO",
+           logical01 = FALSE)
+    fwrite(weather_history_taipei_hourly, "data/weather_history_taipei_hourly.csv",
+           sep = ",",
+           quote = TRUE,
+           na = "",
+           bom = TRUE,
+           row.names = FALSE,
+           dateTimeAs = "ISO",
+           logical01 = FALSE)
+
+# left join weather with historical traffic -------------------------------
+    # check date formats historical data
+    taipei_historical_zh %>% select(1:5) %>% slice_sample(n=5) #shows date format is in separate columns
+    weather_history_taipei_daily %>% select(date) %>% slice_sample(n=5) # yyyymmdd date format
+    weather_history_taipei_hourly %>% select(datetime) %>% slice_sample(n=5) # yyyymmdd hh:mm:ss date time format
+    
+    # make two new columns in date & date time format in the trafic data
+    taipei_historical_zh <- taipei_historical_zh %>%
+      mutate(date = ymd(paste0(year+1911,"-",month,"-",day)),
+             datetime = ymd_hms(paste0(year+1911,"-",month,"-",day, " ", hour, ":", minute, ":00" ))) %>% 
+      mutate(datetime = floor_date(datetime, unit = "hour")) # floor (round down) to full hours for left join
+    
+    
+    # left join with weather
+    tpe_hist_accident_weather <- taipei_historical_zh %>%  
+      left_join(weather_hirtory_taipei_daily, by="date") %>% 
+      left_join(weather_hirtory_taipei_hourly, by="datetime")
+    
+    # export to csv
+      fwrite(tpe_hist_accident_weather, "data/tpe_hist_accident_weather.csv",
+             sep = ",",
+             quote = TRUE,
+             na = "",
+             bom = TRUE,
+             row.names = FALSE,
+             dateTimeAs = "ISO",
+             logical01 = FALSE)
+
+
     
     
     
