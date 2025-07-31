@@ -78,8 +78,6 @@ for(link in data_links){
   
   # download all csv data at ones and deal with strange "Big5" encoding (not natively supported in fread)
     
-    
-    
     # create function to properly import Big5 encoded csv 
       read_Big5_csv <- function(url) {
         raw_lines <- readLines(url, encoding = "bytes", warn = FALSE)
@@ -91,7 +89,7 @@ for(link in data_links){
       taipei_accidents_list <- lapply(urls, read_Big5_csv)
   
     # Combine all years into one data.table, filling missing columns if needed
-      taipei_accidents_df <- rbindlist(list_of_data, fill = TRUE)
+      taipei_accidents_df <- rbindlist(taipei_accidents_list, fill = TRUE)
   
   # translations
     name_map_taipei <- c(
@@ -172,7 +170,7 @@ for(link in data_links){
     # translate columns
       taipei_accidents_df <- taipei_accidents_df %>% 
       rename(!!!name_map_taipei)
-  
+     test2 <- taipei_accidents_df %>% filter(year==104)
   # save dataframe as .csv
     fwrite(taipei_accidents_df, "data/Taipei Accidents (2012-2024).csv")
 
@@ -182,7 +180,7 @@ for(link in data_links){
     
   # Download daily data
     weather_history_taipei_daily <-  weather_history(location = "Taipei",
-                                                      start = "2014-01-01",
+                                                      start = "2012-01-01",
                                                       end = "2024-12-31",
                                                       daily = list("weather_code",
                                                                    "temperature_2m_mean",
@@ -204,7 +202,7 @@ for(link in data_links){
 
   # Download hourly data
     weather_history_taipei_hourly <-  weather_history(location = "Taipei",
-                                                      start = "2014-01-01",
+                                                      start = "2012-01-01",
                                                       end = "2024-12-31",
                                                       hourly = list("temperature_2m",
                                                                     "precipitation",
@@ -248,9 +246,9 @@ for(link in data_links){
     
     # left join with weather
     tpe_hist_accident_weather <- taipei_historical_zh %>%  
-      left_join(weather_hirtory_taipei_daily, by="date") %>% 
-      left_join(weather_hirtory_taipei_hourly, by="datetime")
-    
+      left_join(weather_history_taipei_daily %>% mutate(date=ymd(date)), by="date") %>% 
+      left_join(weather_history_taipei_hourly, by="datetime")
+    tpe_hist_accident_weather <- tpe_hist_accident_weather %>% arrange(datetime)
     # export to csv
       fwrite(tpe_hist_accident_weather, "data/tpe_hist_accident_weather.csv",
              sep = ",",

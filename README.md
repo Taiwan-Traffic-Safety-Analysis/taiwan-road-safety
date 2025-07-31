@@ -1,5 +1,75 @@
-# taiwan-road-safety
-An in-depth look at traffic safety and an analysis of traffic accidents in Taiwan    
+# Climate Related Traffic Safety and Accident Analysis in Taiwan 
+
+# Overview
+
+This project provides an in-depth epidemiological analysis of traffic safety and accident trends in Taiwan, with a particular focus on the impact of various **weather conditions**. Utilizing publicly available data, it aims to identify key risk factors, examine the spatial and temporal distribution of accidents under different weather scenarios, and highlight areas for potential intervention to improve road safety across the island.
+  
+  
+## Project Structure
+
+The project is organized into the following main components:
+
+* **`data/`**: Contains raw and processed datasets used for the analysis.
+    * **Crucially, this will include weather data alongside accident data.**
+* **`scripts/`**: R scripts for data cleaning, processing, analysis, and visualization.
+    * `01_data_acquisition_cleaning.R`: Scripts for downloading, cleaning, and preparing the raw traffic accident data **and merging it with relevant weather data (e.g., from weather stations, Central Weather Administration)**. This may involve spatial and temporal joins.
+    * `02_exploratory_data_analysis.R`: Scripts for initial descriptive statistics and visualizations, **including accident counts and severity by various weather parameters (e.g., clear, rain, fog, strong wind)**.
+    * `03_statistical_analysis.R`: Scripts for performing statistical modeling (e.g., regression analysis, time series analysis) to **quantify the association between weather conditions and accident frequency/severity**.
+    * `04_mapping_visualization.R`: Scripts for generating maps and advanced visualizations of accident hotspots and trends, **potentially layering weather patterns on these maps to show correlations**.
+* **`output/`**: Stores generated figures, tables, and reports.
+* **`docs/`**: (Optional) Additional documentation, such as methodology notes or data dictionaries.
+* **`README.md`**: This file, providing an overview of the project.
+
+## Data Sources
+
+The primary data for this project is sourced from:
+
+* **Traffic Accident Data**: [**Specify your data source(s) here, e.g., Taiwan National Police Agency, Ministry of Transportation and Communications. Look for datasets that include "Weather name" or similar fields.**]
+* **Weather Data**: [**Specify your data source(s) here, e.g., Central Weather Administration (CWA) of Taiwan, historical weather station data. You'll need to consider how to link weather data (e.g., hourly, daily) to specific accident events.**]
+
+Please ensure to cite your sources appropriately within the scripts and any generated reports.
+
+## Key Analyses Performed
+
+* **Descriptive Epidemiology**: Examination of accident frequency, severity, and demographics of involved parties, **stratified by different weather conditions**.
+* **Impact of Precipitation**: Analysis of accidents during various rainfall intensities (e.g., light rain, heavy rain, torrential rain), and their effect on accident frequency and severity.
+* **Visibility Conditions**: Investigation of how reduced visibility (e.g., fog, haze, heavy rain) influences accident occurrence and severity.
+* **Temperature and Humidity Effects**: Exploring the relationship between ambient temperature and humidity with accident risk, especially in Taiwan's climate (e.g., hot and humid conditions).
+* **Wind Speed Analysis**: Assessing the impact of strong winds (e.g., during typhoons or strong monsoon winds) on traffic accidents.
+* **Seasonal and Extreme Weather Trends**: Identification of specific periods (e.g., typhoon season, plum rain season) with higher accident rates due to prevailing weather hazards.
+* **Spatial Analysis**: Identification of high-risk areas and accident clusters, **considering how these patterns change under different weather conditions**.
+* **Risk Factor Identification**: Investigation of additional factors contributing to accidents (e.g., road type, vehicle type, driver behavior), **and how these interact with weather conditions**.
+
+## Requirements
+
+To run the R scripts in this project, you will need to have R and RStudio installed. The following R packages are essential:
+
+* `tidyverse` (for data manipulation and visualization)
+* `sf` (for spatial data handling, crucial for linking accidents to weather stations/grids)
+* `ggplot2` (for advanced plotting)
+* `lubridate` (for date/time operations, essential for matching accident times to weather data)
+* `leaflet` or `tmap` (for interactive mapping, useful for visualizing weather-related accident hotspots)
+* `knitr` and `rmarkdown` (for generating reports)
+* `zoo` or `xts` (potentially for time series analysis of weather and accident data)
+* [**Add any other specific packages you use, e.g., for specific statistical models (e.g., generalized linear models for count data, or models accounting for spatial correlation).**]
+
+You can install these packages using `install.packages("package_name")` in your R console.
+
+## Usage
+
+1.  Clone this repository to your local machine.
+2.  Open the R project file (`.Rproj`) in RStudio.
+3.  Execute the scripts in the `scripts/` directory in sequential order to replicate the analysis.
+    * Start with `01_data_acquisition_cleaning.R` to prepare and merge the accident and weather data.
+    * Proceed through the analysis scripts to generate results and visualizations.
+4.  Explore the generated figures and tables in the `output/` directory.
+
+## Contact
+
+For any questions or further information, please contact:
+
+[Your Name]
+[Your Email Address]
 
 ## Best data source
 1. Taiwan's data portal: https://data.gov.tw/dataset/13139 (only 2025)
