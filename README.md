@@ -3,6 +3,10 @@
 # Overview
 
 This project provides an in-depth epidemiological analysis of traffic safety and accident trends in Taiwan, with a particular focus on the impact of various **weather conditions**. Utilizing publicly available data, it aims to identify key risk factors, examine the spatial and temporal distribution of accidents under different weather scenarios, and highlight areas for potential intervention to improve road safety across the island.
+
+## Background
+
+Recent deadly traffic accidents in the Taipei area have sparked a public debate on traffic safety the country. Many claims that have been reported through numerous news 
   
   
 ## Project Structure
