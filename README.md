@@ -6,7 +6,13 @@ This project provides an in-depth epidemiological analysis of traffic safety and
 
 ## Background
 
-Recent deadly traffic accidents in the Taipei area have sparked a public debate on traffic safety the country. Many claims that have been reported through numerous news 
+Recent deadly traffic accidents in the Taipei area have sparked a public debate on traffic safety the country. This public debate will benefit from a proper data exploration describing the situation as it is, giving an overview of historical trends and identify risk factors and vulnerable groups. 
+
+### Literature on relation between climate and traffic accidents:
+
+- https://linkinghub.elsevier.com/retrieve/pii/S2212420924008070
+- https://www.sciencedirect.com/science/article/abs/pii/S000145752100141X
+- https://www.sciencedirect.com/science/article/abs/pii/S0048969722064683
   
   
 ## Project Structure
