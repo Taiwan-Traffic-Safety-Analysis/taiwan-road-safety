@@ -1,10 +1,3 @@
----
-title: "1-exploratory_data_analysis.md"
-author: "Erik de Jong"
-date: "2025-05-01"
-output: html_document
----
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
