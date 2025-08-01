@@ -26,16 +26,12 @@ The project is organized into the following main components:
 * **`R/`**: R scripts for data cleaning, processing, analysis, and visualization.
     * `1-import.R`, `2-load.R` and `3-Translations.R`: Scripts for downloading, cleaning, and preparing the raw traffic accident data **and merging it with relevant weather data (obtained with `OpenMeteo`)**. This may involve spatial and temporal joins.
 * **`output/`**: Stores generated figures, tables, and reports.
-    * [`1-exploratory_data_analysis.md`](Output/1-exploratory_data_analysis.md): Scripts for initial descriptive statistics and visualizations, **including accident counts and severity by various weather parameters (e.g., clear, rain, fog, strong wind)**.
+    * [`1-exploratory_data_analysis.Rmd`](Output/1-exploratory_data_analysis.Rmd): Scripts for initial descriptive statistics and visualizations, **including accident counts and severity by various weather parameters (e.g., clear, rain, fog, strong wind)**.
     * `2-statistical_analysis.md`: Scripts for performing statistical modeling (e.g., regression analysis, time series analysis) to **quantify the association between weather conditions and accident frequency/severity**.
     * `3mapping_visualization.md`: Scripts for generating maps and advanced visualizations of accident hotspots and trends, **potentially layering weather patterns on these maps to show correlations**.
 * **`README.md`**: This file, providing an overview of the project.
 
 ## Data Sources
-
-The primary data for this project is sourced from:
-
-## Data source for Taipei
 
 - **Taiwan's open data portal**: https://data.gov.tw/dataset/130110
   .csv data by year containing A1 and A2 accidents
@@ -59,11 +55,36 @@ The primary data for this project is sourced from:
   - 速限-速度限制 - Speed Limit
   - 道路型態 - Road Type
   - 事故位置 - Accident Position
-  
-## Data source for hourly and daily weather conditions
 
 - **Openmeteo package**:
-Pisel T. openmeteo: Retrieve Weather Data from the Open-Meteo API [Internet]. R package version 0.2.4. 2023. Available from: https://CRAN.R-project.org/package=openmeteo
+Pisel T. openmeteo: Retrieve Weather Data from the Open-Meteo API [Internet]. R package version 0.2.4. 2023. Available from: https://CRAN.R-project.org/package=openmeteo. The following variables are downloaded with the package:
+  -Daily variables:
+    -weather_code
+    -temperature_2m_mean
+    -temperature_2m_max
+    -temperature_2m_min
+    -apparent_temperature_mean
+    -apparent_temperature_max
+    -apparent_temperature_min
+    -sunrise
+    -sunset
+    -daylight_duration
+    -sunshine_duration
+    -precipitation_sum
+    -precipitation_hours
+    -wind_speed_10m_max
+    -wind_gusts_10m_max
+    -wind_direction_10m_dominant
+  -Hourly variables:
+    -temperature_2m
+    -precipitation
+    -windspeed_10m
+    -cloudcover
+    -apparent_temperature
+    -weather_code
+    -wind_direction_10m
+    -wind_gusts_10m
+
 
 Please ensure to cite your sources appropriately within the scripts and any generated reports.
 
