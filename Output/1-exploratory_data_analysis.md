@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Initial descriptive statistics and visualizations
 
-In this document you will find the steps required to perform an initial exploration analysis of the traffic & climate data combined in [taiwan-road-safety/R/1-import.R](`R/1-import.R`).
+In this document you will find the steps required to perform an initial exploration analysis of the traffic & climate data combined in [`R/1-import.R`](../R/1-import.R).
 
 ## Load packages
 
