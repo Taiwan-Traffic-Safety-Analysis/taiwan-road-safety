@@ -11,7 +11,7 @@
 
 
 
-<title>1-exploratory_data_analysis.knit</title>
+<title>README</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -352,20 +352,225 @@ display: none;
 </div>
 
 
-<div id="initial-descriptive-statistics-and-visualizations" class="section level1">
-<h1>Initial descriptive statistics and visualizations</h1>
-<p>In this document you will find the steps required to perform an
-initial exploration analysis of the traffic &amp; climate data combined
-in <a href="../R/1-import.R"><code>R/1-import.R</code></a>.</p>
-<div id="load-packages" class="section level2">
-<h2>Load packages</h2>
-<p>To conduct this analysis we need a few packages loaded in the R
-environment. <code>pacman</code> is used for convenience as it will
-install (and if required easily update) required packages when not
-installed. If you prefer you could run
-<code>install.packages(&quot;packagename&quot;)</code> and
-<code>library(&quot;packagename&quot;)</code> instead.</p>
-<pre class="r"><code>pacman::p_load(tidyverse)</code></pre>
+<div id="climate-related-traffic-safety-and-accident-analysis-in-taiwan" class="section level1">
+<h1>Climate Related Traffic Safety and Accident Analysis in Taiwan</h1>
+</div>
+<div id="overview" class="section level1">
+<h1>Overview</h1>
+<p>This project provides an in-depth epidemiological analysis of traffic
+safety and accident trends in Taiwan, with a particular focus on the
+impact of various <strong>weather conditions</strong>. Utilizing
+publicly available data, it aims to identify key risk factors, examine
+the spatial and temporal distribution of accidents under different
+weather scenarios, and highlight areas for potential intervention to
+improve road safety across the island.</p>
+<div id="background" class="section level2">
+<h2>Background</h2>
+<p>Recent deadly traffic accidents in the Taipei area have sparked a
+public debate on traffic safety the country. This public debate will
+benefit from a proper data exploration describing the situation as it
+is, giving an overview of historical trends and identify risk factors
+and vulnerable groups.</p>
+<div id="literature-on-relation-between-climate-and-traffic-accidents" class="section level3">
+<h3>Literature on relation between climate and traffic accidents*:</h3>
+<ul>
+<li>Gariazzo C, Bruzzone S, Finardi S, Scortichini M, Veronico L,
+Marinaccio A. Association between extreme ambient temperatures and
+general indistinct and work-related road crashes. A nationwide study in
+Italy. Accident Analysis &amp; Prevention [Internet]. 2021 Apr
+6;155:106110. Available from: <a href="https://www.sciencedirect.com/science/article/abs/pii/S000145752100141X" class="uri">https://www.sciencedirect.com/science/article/abs/pii/S000145752100141X</a></li>
+<li>Gu Z, Peng B, Xin Y. Higher traffic crash risk in extreme hot days?
+A spatiotemporal examination of risk factors and influencing features.
+International Journal of Disaster Risk Reduction [Internet]. 2024 Dec
+1;105045. Available from: <a href="https://www.sciencedirect.com/science/article/abs/pii/S2212420924008070?via%3Dihub" class="uri">https://www.sciencedirect.com/science/article/abs/pii/S2212420924008070?via%3Dihub</a></li>
+<li>He L, Liu C, Shan X, Zhang L, Zheng L, Yu Y, et al. Impact of high
+temperature on road injury mortality in a changing climate, 1990–2019: A
+global analysis. The Science of the Total Environment [Internet]. 2022
+Oct 10;857:159369. Available from: <a href="https://www.sciencedirect.com/science/article/abs/pii/S0048969722064683" class="uri">https://www.sciencedirect.com/science/article/abs/pii/S0048969722064683</a></li>
+</ul>
+<p><em>currently all focusing on heat</em></p>
+</div>
+</div>
+<div id="project-structure" class="section level2">
+<h2>Project Structure</h2>
+<p>The project is organized into the following main components:</p>
+<ul>
+<li><strong><code>data/</code></strong>: Contains raw and processed
+datasets used for the analysis.
+<ul>
+<li><strong>Crucially, this will include weather data alongside accident
+data.</strong></li>
+</ul></li>
+<li><strong><code>R/</code></strong>: R scripts for data cleaning,
+processing, analysis, and visualization.
+<ul>
+<li><code>1-import.R</code>, <code>2-load.R</code> and
+<code>3-Translations.R</code>: Scripts for downloading, cleaning, and
+preparing the raw traffic accident data <strong>and merging it with
+relevant weather data (obtained with <code>OpenMeteo</code>)</strong>.
+This may involve spatial and temporal joins.</li>
+</ul></li>
+<li><strong><code>output/</code></strong>: Stores generated figures,
+tables, and reports.
+<ul>
+<li><a href="Output/1-exploratory_data_analysis.Rmd"><code>1-exploratory_data_analysis.Rmd</code></a>:
+Scripts for initial descriptive statistics and visualizations,
+<strong>including accident counts and severity by various weather
+parameters (e.g., clear, rain, fog, strong wind)</strong>.</li>
+<li><code>2-statistical_analysis.md</code>: Scripts for performing
+statistical modeling (e.g., regression analysis, time series analysis)
+to <strong>quantify the association between weather conditions and
+accident frequency/severity</strong>.</li>
+<li><code>3mapping_visualization.md</code>: Scripts for generating maps
+and advanced visualizations of accident hotspots and trends,
+<strong>potentially layering weather patterns on these maps to show
+correlations</strong>.</li>
+</ul></li>
+<li><strong><code>README.md</code></strong>: This file, providing an
+overview of the project.</li>
+</ul>
+</div>
+<div id="data-sources" class="section level2">
+<h2>Data Sources</h2>
+<ul>
+<li><strong>Taiwan’s open data portal</strong>: <a href="https://data.gov.tw/dataset/130110" class="uri">https://data.gov.tw/dataset/130110</a> .csv data by year
+containing A1 and A2 accidents from 2012 (TW Year 101) - 2024 (TW Year
+113) with at least the following fields (later years have 71 variables):
+<ul>
+<li>發生年度 - Year of Occurrence</li>
+<li>發生月 - Month of Occurrence</li>
+<li>發生日 - Day of Occurrence</li>
+<li>發生時-Hours - Hour of Occurrence</li>
+<li>發生分 - Minute of Occurrence</li>
+<li>處理別-編號 - Handling Type - Number</li>
+<li>區序 - District Number</li>
+<li>肇事地點 - Accident Location</li>
+<li>死亡人數 - Number of Fatalities</li>
+<li>受傷人數 - Number of Injuries</li>
+<li>當事人序號 - Party Involved Number</li>
+<li>車種 - Vehicle Type</li>
+<li>性別 - Gender</li>
+<li>年齡 - Age</li>
+<li>受傷程度 - Injury Severity</li>
+<li>天候 - Weather Conditions</li>
+<li>速限-速度限制 - Speed Limit</li>
+<li>道路型態 - Road Type</li>
+<li>事故位置 - Accident Position</li>
+</ul></li>
+<li><strong>Openmeteo package</strong>: Pisel T. openmeteo: Retrieve
+Weather Data from the Open-Meteo API [Internet]. R package version
+0.2.4. 2023. Available from: <a href="https://CRAN.R-project.org/package=openmeteo" class="uri">https://CRAN.R-project.org/package=openmeteo</a>. The
+following variables are downloaded with the package:
+<ul>
+<li>Daily variables:
+<ul>
+<li>weather_code</li>
+<li>temperature_2m_mean</li>
+<li>temperature_2m_max</li>
+<li>temperature_2m_min</li>
+<li>apparent_temperature_mean</li>
+<li>apparent_temperature_max</li>
+<li>apparent_temperature_min</li>
+<li>sunrise</li>
+<li>sunset</li>
+<li>daylight_duration</li>
+<li>sunshine_duration</li>
+<li>precipitation_sum</li>
+<li>precipitation_hours</li>
+<li>wind_speed_10m_max</li>
+<li>wind_gusts_10m_max</li>
+<li>wind_direction_10m_dominant</li>
+</ul></li>
+<li>Hourly variables:
+<ul>
+<li>temperature_2m</li>
+<li>precipitation</li>
+<li>windspeed_10m</li>
+<li>cloudcover</li>
+<li>apparent_temperature</li>
+<li>weather_code</li>
+<li>wind_direction_10m</li>
+<li>wind_gusts_10m</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>Please ensure to cite your sources appropriately within the scripts
+and any generated reports.</p>
+</div>
+<div id="key-analyses-performed" class="section level2">
+<h2>Key Analyses Performed</h2>
+<ul>
+<li><strong>Descriptive Epidemiology</strong>: Examination of accident
+frequency, severity, and demographics of involved parties,
+<strong>stratified by different weather conditions</strong>.</li>
+<li><strong>Impact of Precipitation</strong>: Analysis of accidents
+during various rainfall intensities (e.g., light rain, heavy rain,
+torrential rain), and their effect on accident frequency and
+severity.</li>
+<li><strong>Visibility Conditions</strong>: Investigation of how reduced
+visibility (e.g., fog, haze, heavy rain) influences accident occurrence
+and severity.</li>
+<li><strong>Temperature and Humidity Effects</strong>: Exploring the
+relationship between ambient temperature and humidity with accident
+risk, especially in Taiwan’s climate (e.g., hot and humid
+conditions).</li>
+<li><strong>Wind Speed Analysis</strong>: Assessing the impact of strong
+winds (e.g., during typhoons or strong monsoon winds) on traffic
+accidents.</li>
+<li><strong>Seasonal and Extreme Weather Trends</strong>: Identification
+of specific periods (e.g., typhoon season, plum rain season) with higher
+accident rates due to prevailing weather hazards.</li>
+<li><strong>Spatial Analysis</strong>: Identification of high-risk areas
+and accident clusters, <strong>considering how these patterns change
+under different weather conditions</strong>.</li>
+<li><strong>Risk Factor Identification</strong>: Investigation of
+additional factors contributing to accidents (e.g., road type, vehicle
+type, driver behavior), <strong>and how these interact with weather
+conditions</strong>.</li>
+</ul>
+</div>
+<div id="requirements" class="section level2">
+<h2>Requirements</h2>
+<p>To run the R scripts in this project, you will need to have R and
+RStudio installed. The following R packages are essential:</p>
+<ul>
+<li><code>tidyverse</code> (for data manipulation and
+visualization)</li>
+<li><code>sf</code> (for spatial data handling, crucial for linking
+accidents to weather stations/grids)</li>
+<li><code>ggplot2</code> (for advanced plotting)</li>
+<li><code>lubridate</code> (for date/time operations, essential for
+matching accident times to weather data)</li>
+<li><code>leaflet</code> or <code>tmap</code> (for interactive mapping,
+useful for visualizing weather-related accident hotspots)</li>
+<li><code>knitr</code> and <code>rmarkdown</code> (for generating
+reports)</li>
+<li><code>zoo</code> or <code>xts</code> (potentially for time series
+analysis of weather and accident data)</li>
+<li><code>data.table</code> (for fast handling of large datasets,
+including import and export of .csv files)</li>
+<li>[<strong>Add any other specific packages you use, e.g., for specific
+statistical models (e.g., generalized linear models for count data, or
+models accounting for spatial correlation).</strong>]</li>
+</ul>
+<p>You can install these packages using
+<code>install.packages(&quot;package_name&quot;)</code> in your R console.</p>
+</div>
+<div id="usage" class="section level2">
+<h2>Usage</h2>
+<ol style="list-style-type: decimal">
+<li>Clone/fork this repository to your local machine.</li>
+<li>Execute the scripts in the <code>R/</code> directory in sequential
+order to replicate the data handling.</li>
+<li>Explore the generated markdown reports in the <code>output/</code>
+directory.</li>
+</ol>
+</div>
+<div id="contact" class="section level2">
+<h2>Contact</h2>
+<p>For any questions or further information, please contact:</p>
+<p><em>Erik de Jong</em> <a href="https://www.linkedin.com/in/erikpieterdejong/">Contact through
+LinkedIn</a></p>
 </div>
 </div>
 
