@@ -35,8 +35,35 @@ The project is organized into the following main components:
 
 The primary data for this project is sourced from:
 
-* **Traffic Accident Data**: [**Specify your data source(s) here, e.g., Taiwan National Police Agency, Ministry of Transportation and Communications. Look for datasets that include "Weather name" or similar fields.**]
-* **Weather Data**: [**Specify your data source(s) here, e.g., Central Weather Administration (CWA) of Taiwan, historical weather station data. You'll need to consider how to link weather data (e.g., hourly, daily) to specific accident events.**]
+## Data source for Taipei
+
+- **Taiwan's open data portal**: https://data.gov.tw/dataset/130110
+  .csv data by year containing A1 and A2 accidents
+  from 2012 (TW Year 101) - 2024 (TW Year 113) with at least the following fields (later years have 71 variables):
+  - 發生年度 - Year of Occurrence
+  - 發生月 - Month of Occurrence
+  - 發生日 - Day of Occurrence
+  - 發生時-Hours - Hour of Occurrence
+  - 發生分 - Minute of Occurrence
+  - 處理別-編號 - Handling Type - Number
+  - 區序 - District Number
+  - 肇事地點 - Accident Location
+  - 死亡人數 - Number of Fatalities
+  - 受傷人數 - Number of Injuries
+  - 當事人序號 - Party Involved Number
+  - 車種 - Vehicle Type
+  - 性別 - Gender
+  - 年齡 - Age
+  - 受傷程度 - Injury Severity
+  - 天候 - Weather Conditions
+  - 速限-速度限制 - Speed Limit
+  - 道路型態 - Road Type
+  - 事故位置 - Accident Position
+  
+## Data source for hourly and daily weather conditions
+
+- **Openmeteo package**:
+Pisel T. openmeteo: Retrieve Weather Data from the Open-Meteo API [Internet]. R package version 0.2.4. 2023. Available from: https://CRAN.R-project.org/package=openmeteo
 
 Please ensure to cite your sources appropriately within the scripts and any generated reports.
 
@@ -80,32 +107,4 @@ For any questions or further information, please contact:
 *Erik de Jong*
 [Contact through LinkedIn](https://www.linkedin.com/in/erikpieterdejong/)
 
-## Data source for Taipei
 
-- **Taiwan's open data portal**: https://data.gov.tw/dataset/130110
-  .csv data by year containing A1 and A2 accidents
-  from 2012 (TW Year 101) - 2024 (TW Year 113) with at least the following fields (later years have 71 variables):
-  - 發生年度 - Year of Occurrence
-  - 發生月 - Month of Occurrence
-  - 發生日 - Day of Occurrence
-  - 發生時-Hours - Hour of Occurrence
-  - 發生分 - Minute of Occurrence
-  - 處理別-編號 - Handling Type - Number
-  - 區序 - District Number
-  - 肇事地點 - Accident Location
-  - 死亡人數 - Number of Fatalities
-  - 受傷人數 - Number of Injuries
-  - 當事人序號 - Party Involved Number
-  - 車種 - Vehicle Type
-  - 性別 - Gender
-  - 年齡 - Age
-  - 受傷程度 - Injury Severity
-  - 天候 - Weather Conditions
-  - 速限-速度限制 - Speed Limit
-  - 道路型態 - Road Type
-  - 事故位置 - Accident Position
-  
-## Data source for hourly and daily weather conditions
-
-- **Openmeteo package**:
-Pisel T. openmeteo: Retrieve Weather Data from the Open-Meteo API [Internet]. R package version 0.2.4. 2023. Available from: https://CRAN.R-project.org/package=openmeteo
