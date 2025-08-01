@@ -75,7 +75,7 @@ Pisel T. openmeteo: Retrieve Weather Data from the Open-Meteo API [Internet]. R 
     - wind_speed_10m_max
     - wind_gusts_10m_max
     - wind_direction_10m_dominant
-  -Hourly variables:
+  - Hourly variables:
     - temperature_2m
     - precipitation
     - windspeed_10m
