@@ -9,11 +9,13 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+# Initial descriptive statistics and visualizations
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+In this document you will find the steps required to perform an initial exploration analysis of the traffic & climate data combined in [./R/1-import.R](`R/1-import.R`).
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+## Load packages
+
+To conduct this analysis we need a few packages loaded in the R environment. `pacman` Is 
 
 ```{r cars}
 summary(cars)
