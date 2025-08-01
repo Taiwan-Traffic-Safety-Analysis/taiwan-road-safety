@@ -58,32 +58,32 @@ The project is organized into the following main components:
 
 - **Openmeteo package**:
 Pisel T. openmeteo: Retrieve Weather Data from the Open-Meteo API [Internet]. R package version 0.2.4. 2023. Available from: https://CRAN.R-project.org/package=openmeteo. The following variables are downloaded with the package:
-  -Daily variables:
-    -weather_code
-    -temperature_2m_mean
-    -temperature_2m_max
-    -temperature_2m_min
-    -apparent_temperature_mean
-    -apparent_temperature_max
-    -apparent_temperature_min
-    -sunrise
-    -sunset
-    -daylight_duration
-    -sunshine_duration
-    -precipitation_sum
-    -precipitation_hours
-    -wind_speed_10m_max
-    -wind_gusts_10m_max
-    -wind_direction_10m_dominant
+  - Daily variables:
+    - weather_code
+    - temperature_2m_mean
+    - temperature_2m_max
+    - temperature_2m_min
+    - apparent_temperature_mean
+    - apparent_temperature_max
+    - apparent_temperature_min
+    - sunrise
+    - sunset
+    - daylight_duration
+    - sunshine_duration
+    - precipitation_sum
+    - precipitation_hours
+    - wind_speed_10m_max
+    - wind_gusts_10m_max
+    - wind_direction_10m_dominant
   -Hourly variables:
-    -temperature_2m
-    -precipitation
-    -windspeed_10m
-    -cloudcover
-    -apparent_temperature
-    -weather_code
-    -wind_direction_10m
-    -wind_gusts_10m
+    - temperature_2m
+    - precipitation
+    - windspeed_10m
+    - cloudcover
+    - apparent_temperature
+    - weather_code
+    - wind_direction_10m
+    - wind_gusts_10m
 
 
 Please ensure to cite your sources appropriately within the scripts and any generated reports.
