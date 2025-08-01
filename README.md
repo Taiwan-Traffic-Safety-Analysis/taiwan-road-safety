@@ -26,7 +26,7 @@ The project is organized into the following main components:
 * **`R/`**: R scripts for data cleaning, processing, analysis, and visualization.
     * `1-import.R`, `2-load.R` and `3-Translations.R`: Scripts for downloading, cleaning, and preparing the raw traffic accident data **and merging it with relevant weather data (obtained with `OpenMeteo`)**. This may involve spatial and temporal joins.
 * **`output/`**: Stores generated figures, tables, and reports.
-    * [Output/1-exploratory_data_analysis.md](`1-exploratory_data_analysis.md`): Scripts for initial descriptive statistics and visualizations, **including accident counts and severity by various weather parameters (e.g., clear, rain, fog, strong wind)**.
+    * [`1-exploratory_data_analysis.md`](Output/1-exploratory_data_analysis.md): Scripts for initial descriptive statistics and visualizations, **including accident counts and severity by various weather parameters (e.g., clear, rain, fog, strong wind)**.
     * `2-statistical_analysis.md`: Scripts for performing statistical modeling (e.g., regression analysis, time series analysis) to **quantify the association between weather conditions and accident frequency/severity**.
     * `3mapping_visualization.md`: Scripts for generating maps and advanced visualizations of accident hotspots and trends, **potentially layering weather patterns on these maps to show correlations**.
 * **`README.md`**: This file, providing an overview of the project.
