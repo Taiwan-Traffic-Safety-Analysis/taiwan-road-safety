@@ -1,17 +1,15 @@
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 # Initial descriptive statistics and visualizations
 
 In this document you will find the steps required to perform an initial exploration analysis of the traffic & climate data combined in [`R/1-import.R`](../R/1-import.R).
 
 ## Load packages
 
-To conduct this analysis we need a few packages loaded in the R environment. `pacman` Is 
+To conduct this analysis we need a few packages loaded in the R environment. `pacman` Is used for convenience as it will install (and if required easily update) required packages when not installed. If you prefer you could run `install.packages("packagename")` and `library("packagename")` instead. 
 
-```{r cars}
-summary(cars)
+```{r loadpackages, echo=TRUE}
+pacman::p_load(tidyverse) 
+
+
 ```
 
 ## Including Plots
