@@ -8,11 +8,13 @@ This project provides an in-depth epidemiological analysis of traffic safety and
 
 Recent deadly traffic accidents in the Taipei area have sparked a public debate on traffic safety the country. This public debate will benefit from a proper data exploration describing the situation as it is, giving an overview of historical trends and identify risk factors and vulnerable groups. 
 
-### Literature on relation between climate and traffic accidents:
+### Literature on relation between climate and traffic accidents*:
 
 - Gariazzo C, Bruzzone S, Finardi S, Scortichini M, Veronico L, Marinaccio A. Association between extreme ambient temperatures and general indistinct and work-related road crashes. A nationwide study in Italy. Accident Analysis & Prevention [Internet]. 2021 Apr 6;155:106110. Available from: https://www.sciencedirect.com/science/article/abs/pii/S000145752100141X
 - Gu Z, Peng B, Xin Y. Higher traffic crash risk in extreme hot days? A spatiotemporal examination of risk factors and influencing features. International Journal of Disaster Risk Reduction [Internet]. 2024 Dec 1;105045. Available from: https://www.sciencedirect.com/science/article/abs/pii/S2212420924008070?via%3Dihub
 - He L, Liu C, Shan X, Zhang L, Zheng L, Yu Y, et al. Impact of high temperature on road injury mortality in a changing climate, 1990–2019: A global analysis. The Science of the Total Environment [Internet]. 2022 Oct 10;857:159369. Available from: https://www.sciencedirect.com/science/article/abs/pii/S0048969722064683
+
+*currently all focusing on heat*
   
   
 ## Project Structure
