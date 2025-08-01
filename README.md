@@ -23,13 +23,12 @@ The project is organized into the following main components:
 
 * **`data/`**: Contains raw and processed datasets used for the analysis.
     * **Crucially, this will include weather data alongside accident data.**
-* **`scripts/`**: R scripts for data cleaning, processing, analysis, and visualization.
-    * `01_data_acquisition_cleaning.R`: Scripts for downloading, cleaning, and preparing the raw traffic accident data **and merging it with relevant weather data (e.g., from weather stations, Central Weather Administration)**. This may involve spatial and temporal joins.
-    * `02_exploratory_data_analysis.R`: Scripts for initial descriptive statistics and visualizations, **including accident counts and severity by various weather parameters (e.g., clear, rain, fog, strong wind)**.
-    * `03_statistical_analysis.R`: Scripts for performing statistical modeling (e.g., regression analysis, time series analysis) to **quantify the association between weather conditions and accident frequency/severity**.
-    * `04_mapping_visualization.R`: Scripts for generating maps and advanced visualizations of accident hotspots and trends, **potentially layering weather patterns on these maps to show correlations**.
+* **`R/`**: R scripts for data cleaning, processing, analysis, and visualization.
+    * `1-import.R`, `2-load.R` and `3-Translations.R`: Scripts for downloading, cleaning, and preparing the raw traffic accident data **and merging it with relevant weather data (obtained with `OpenMeteo`)**. This may involve spatial and temporal joins.
 * **`output/`**: Stores generated figures, tables, and reports.
-* **`docs/`**: (Optional) Additional documentation, such as methodology notes or data dictionaries.
+    * `1-exploratory_data_analysis.md`: Scripts for initial descriptive statistics and visualizations, **including accident counts and severity by various weather parameters (e.g., clear, rain, fog, strong wind)**.
+    * `2-statistical_analysis.md`: Scripts for performing statistical modeling (e.g., regression analysis, time series analysis) to **quantify the association between weather conditions and accident frequency/severity**.
+    * `3mapping_visualization.md`: Scripts for generating maps and advanced visualizations of accident hotspots and trends, **potentially layering weather patterns on these maps to show correlations**.
 * **`README.md`**: This file, providing an overview of the project.
 
 ## Data Sources
@@ -63,53 +62,27 @@ To run the R scripts in this project, you will need to have R and RStudio instal
 * `leaflet` or `tmap` (for interactive mapping, useful for visualizing weather-related accident hotspots)
 * `knitr` and `rmarkdown` (for generating reports)
 * `zoo` or `xts` (potentially for time series analysis of weather and accident data)
+* `data.table` (for fast handling of large datasets, including import and export of .csv files)
 * [**Add any other specific packages you use, e.g., for specific statistical models (e.g., generalized linear models for count data, or models accounting for spatial correlation).**]
 
 You can install these packages using `install.packages("package_name")` in your R console.
 
 ## Usage
 
-1.  Clone this repository to your local machine.
-2.  Open the R project file (`.Rproj`) in RStudio.
-3.  Execute the scripts in the `scripts/` directory in sequential order to replicate the analysis.
-    * Start with `01_data_acquisition_cleaning.R` to prepare and merge the accident and weather data.
-    * Proceed through the analysis scripts to generate results and visualizations.
-4.  Explore the generated figures and tables in the `output/` directory.
+1.  Clone/fork this repository to your local machine.
+3.  Execute the scripts in the `R/` directory in sequential order to replicate the data handling.
+4.  Explore the generated markdown reports in the `output/` directory.
 
 ## Contact
 
 For any questions or further information, please contact:
 
-[Your Name]
-[Your Email Address]
+*Erik de Jong*
+[Contact through LinkedIn](https://www.linkedin.com/in/erikpieterdejong/)
 
-## Best data source
-1. Taiwan's data portal: https://data.gov.tw/dataset/13139 (only 2025)
+## Data source for Taipei
 
-
-## Other Data sources
-1. Ministry of Transportation, Road Traffic Safety Portal Site: https://168.motc.gov.tw/en/countrydeadhurt/%E8%87%BA%E5%8C%97%E5%B8%82
-2. Ministry of Transportation, statistics portal: https://statis.motc.gov.tw/motc/Statistics/Display?Seq=133
-   There is an english site, but it doesn't have all the same indicators
-   It seems the smallest available unit is county/city.
-   Here's an example query showing DUI's within the last 30 days: https://statis.motc.gov.tw/motc/Statistics/Display?Seq=122&Start=113-03-00&End=114-03-00&ShowYear=true&ShowMonth=true&ShowQuarter=false&ShowHalfYear=false&Mode=0&ColumnValues=1127_1128_1129&CodeListValues=2319_2320_2321_2322_2323_2324_2325_2326_2327_2328_2329_2330_2331_2332_2333_2334_2335_2336_2337_2338_2339_2340_2341_2342_2343
-3. Road safety data dashboard: https://roadsafety.tw/Dashboard/Custom?type=30%E6%97%A5%E6%AD%BB%E4%BA%A1%E4%BA%BA%E6%95%B8       
-   I hope there's a better way to do this, but it's possible to get deaths by district (區) and month-year from the dashboard
-4. Hotspots map       
-   There's also a map that shows accidents by year including location and cause of the accident: https://roadsafety.tw/AccLocCbi
-5. School hotspots map      
-   It's possible to get all the locations of accidents in a 1km radius around schools. We could theoretically use that to find all the point locations of accidents across the city. The annoying thing is that it wouldn't contain info about the cause of the accident...    
-  https://roadsafety.tw/SchoolHotSpots#
-6. Police statistics: https://ba.npa.gov.tw/statis/webMain.aspx?k=defjsp       
-   This includes data about deaths, accidents stratified by city, year and cause.
-   There is also data about tickets issued for things like speeding, dangerous driving, DUIs etc.
-   Tickets are stratified by city, month and type of vehicle.
-   Dui's are stratified by city, month, injuries and deaths. 
-   
-## Data Sources by municipality
-
-### Taipei
-- Taiwan's data portal: https://data.gov.tw/dataset/130110
+- **Taiwan's open data portal**: https://data.gov.tw/dataset/130110
   .csv data by year containing A1 and A2 accidents
   from 2012 (TW Year 101) - 2024 (TW Year 113) with at least the following fields (later years have 71 variables):
   - 發生年度 - Year of Occurrence
@@ -131,3 +104,8 @@ For any questions or further information, please contact:
   - 速限-速度限制 - Speed Limit
   - 道路型態 - Road Type
   - 事故位置 - Accident Position
+  
+## Data source for hourly and daily weather conditions
+
+- **Openmeteo package**:
+Pisel T. openmeteo: Retrieve Weather Data from the Open-Meteo API [Internet]. R package version 0.2.4. 2023. Available from: https://CRAN.R-project.org/package=openmeteo
