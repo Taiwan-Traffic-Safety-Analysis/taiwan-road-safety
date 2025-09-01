@@ -1,4 +1,6 @@
 # Accidents by sex
+library(ggplot2)
+library(dplyr)
 
 taipei_accidents_df |>  
   count(性別) |> 
@@ -50,7 +52,8 @@ taipei_accidents_df |>
 # Accidents by sex and age
 
 taipei_accidents_df |> 
-  filter(性別 %in% c("男", "女")) |>
+  filter(性別 %in% c(#"男", 
+    "女")) |>
   group_by(性別) |>
   count(年齡) |>
   filter(年齡 > 0) |>

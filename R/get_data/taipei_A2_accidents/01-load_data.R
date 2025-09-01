@@ -1,6 +1,7 @@
 #load packages
 pacman::p_load(dplyr,
                rvest,
+               stringr,
                data.table,
                rdflib,
                openmeteo) 
