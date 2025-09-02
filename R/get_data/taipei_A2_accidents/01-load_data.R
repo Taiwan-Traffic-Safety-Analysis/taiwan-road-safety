@@ -32,12 +32,25 @@ read_Big5_csv <- function(url) {
   raw_lines <- readLines(url, encoding = "bytes", warn = FALSE)
   utf8_lines <- iconv(raw_lines, from = "Big5", to = "UTF-8")
   df <- fread(text = utf8_lines)
+  
+  # Fix the column names for the random dataset where they added numbers 
+  # at the start of the column names
+  colnames(df) <- df |> 
+                  colnames() |> 
+                  str_remove("^\\d+(?=[\\p{Han}])")
+  
   df
 }
 
 #load all csvs and combine into list
 taipei_accidents_list <- lapply(urls, read_Big5_csv)
 
+
+
 # Combine all years into one data.table, filling missing columns if needed
 taipei_accidents_df <- rbindlist(taipei_accidents_list, fill = TRUE)
+
+
+# remove intermediate files
+rm(list = c("rdf", "taipei_accidents_list", "urls"))
   

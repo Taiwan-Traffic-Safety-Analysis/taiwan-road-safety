@@ -18,6 +18,21 @@ dataset_url <- "https://data.gov.tw/dataset/13139"
 # 2024
 # https://data.gov.tw/dataset/172969
 
+# 2022
+# https://data.gov.tw/dataset/161199
+
+# 2021
+# https://data.gov.tw/dataset/158865
+
+# 2020
+# https://data.gov.tw/dataset/158864
+
+# 2019
+# https://data.gov.tw/dataset/158863
+
+# 2018
+# https://data.gov.tw/dataset/158862
+
 
 # Load the data directly for Taiwan's data portal
 # Using A2 level data (I'm still not sure what the different levels are)
