@@ -1,5 +1,6 @@
 library(stringr)
 library(dplyr)
+library(lubridate)
 
 
 taipei_accidents_zh <- taipei_accidents_df |>
@@ -9,6 +10,7 @@ taipei_accidents_zh <- taipei_accidents_df |>
          # convert 民國to 西元
          發生年度 =  發生年度 + 1911,
          發生日期 = as.Date(paste(發生年度, 發生月, 發生日, sep = "-")),
+         發生時間 = hm(paste(`發生時-Hours`, 發生分)),
          區序 = str_remove(區序, "\\d+"),
          車種 = case_match(車種,
                          "A01" ~ "大客車 - 公營公車",
