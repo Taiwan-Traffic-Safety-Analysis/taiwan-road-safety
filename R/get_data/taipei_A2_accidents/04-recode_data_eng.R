@@ -909,4 +909,6 @@ taipei_accidents_eng <- taipei_accidents_zh |>
          secondary_cause_code, 
          personal_hit_and_run,
          occupation, 
-         trip_purpose)
+         trip_purpose, 
+         
+         accident_id)
