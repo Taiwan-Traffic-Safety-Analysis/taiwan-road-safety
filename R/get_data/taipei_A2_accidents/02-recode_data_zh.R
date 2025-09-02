@@ -918,8 +918,6 @@ taipei_accidents_zh <- taipei_accidents_df |>
          個人肇逃否,
          職業,
          旅次目的
-   
-        
          
 )
 

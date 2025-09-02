@@ -3,8 +3,7 @@ pacman::p_load(dplyr,
                rvest,
                stringr,
                data.table,
-               rdflib,
-               openmeteo) 
+               rdflib) 
 
 
 
@@ -52,5 +51,5 @@ taipei_accidents_df <- rbindlist(taipei_accidents_list, fill = TRUE)
 
 
 # remove intermediate files
-rm(list = c("rdf", "taipei_accidents_list", "urls"))
+rm(list = c("rdf", "taipei_accidents_list", "urls", "query", "url"))
   
