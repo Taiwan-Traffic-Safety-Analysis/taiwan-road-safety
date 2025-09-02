@@ -52,4 +52,5 @@ rsconnect/
 API/
 
 # Ignore data folder because things are taking forever with it
-data/
+# Never mind. We're going to eventually switch to a database 
+# data/
