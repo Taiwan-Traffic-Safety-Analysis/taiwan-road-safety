@@ -855,6 +855,7 @@ taipei_accidents_zh <- taipei_accidents_df |>
   
   # select only the columns we want
   select(發生日期,
+         發生時間,
          發生年度,
          發生月,
          發生日,

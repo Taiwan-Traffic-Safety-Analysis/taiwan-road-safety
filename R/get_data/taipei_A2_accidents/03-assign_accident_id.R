@@ -7,6 +7,7 @@ unique_accidents <-
   
   # select enough variables to determine uniqueness
   taipei_accidents_zh |> select(發生日期,
+                                發生時間,
                               發生年度,
                               發生月,
                               發生日,
