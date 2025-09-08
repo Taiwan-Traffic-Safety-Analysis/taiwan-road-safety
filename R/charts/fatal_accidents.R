@@ -1,35 +1,30 @@
 library(sf)
 library(ggplot2)
 library(leaflet)
-
-taiwan_villages <- st_read("/home/russ/Downloads/OFiles_567e47a5-8819-4ece-8dbc-6d68492611f8/VILLAGE_NLSC_1140620.shp")
-
-
-
-# convert unique accidents to sf object
-unique_accidents_sf <- unique_accidents |>
-                       filter(!is.na(座標_X)) |>
-                       st_as_sf(coords = c(x = "座標_X", y = "座標_Y"),
-                                crs = st_crs(taiwan_villages))
-
-
-fatal_accidents <- unique_accidents |>
-                   filter(死亡人數 > 0)
-
-
-fatal_accidents_sf <- unique_accidents_sf |>
-  filter(死亡人數 > 0)
+library(dplyr)
 
 
 
-taiwan_villages |>
-  filter(COUNTYNAME == "臺北市") |>
-  ggplot() +
-  geom_sf() +
-  geom_sf(data = fatal_accidents_sf)
+# deaths per li
+  ggplot(data = taipei_villages) +
+  geom_sf(aes(fill= deaths_and_accidents))+
+    # Use a perceptually uniform color scale (e.g., viridis)
+    scale_fill_viridis_c() +
+    labs(
+      title = "Deaths and Accidents per village In Taipei 2016-2025",
+      fill = "Total Deaths and Accidents"
+    ) +
+    theme_minimal()
+
+  # deaths as points overlapped over lis
+  taipei_villages  |>
+    ggplot() +
+    geom_sf() +
+    geom_sf(data = fatal_accidents_sf)
+  
 
 
-
+# zoomable map of fatal accidents as points
 fatal_accidents_sf |>
   leaflet() |>
   addProviderTiles(providers$CartoDB.Positron) |>
@@ -56,4 +51,28 @@ fatal_accidents_sf |>
                        
                          fillColor = "blue",
                         group = "default_size")
+
+
+
+# zoomable overlay of accidents per polygon over map of Taipei
+
+# Example for a continuous numeric variable (e.g., 'value')
+pal_numeric <- leaflet::colorNumeric(palette = "viridis", domain = taipei_villages$deaths)
+
+
+taipei_villages |>
+  leaflet() |>
+  addProviderTiles(providers$CartoDB.Positron) |>
+  addPolygons(fillColor = ~pal_numeric(deaths), 
+              fillOpacity = 0.5,
+              stroke = FALSE,
+              popup = ~paste("<b>District:</b>", TOWNNAME, "<br>",
+                            "<b>Li:</b>", VILLNAME, "<br>",
+                            "<b>Deaths:</b>",deaths , "<br>",
+                            "<b>Accidents:</b>",accidents , "<br>",
+                            "<b>Deaths and Accidents:</b>", deaths_and_accidents
+                            
+              ))
+
+
 
