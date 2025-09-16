@@ -14,7 +14,8 @@ library(dplyr)
       title = "Deaths and Accidents per village In Taipei 2016-2025",
       fill = "Total Deaths and Accidents"
     ) +
-    theme_minimal()
+    theme_minimal() + 
+    geom_sf(data = fatal_accidents_sf)
 
   # deaths as points overlapped over lis
   taipei_villages  |>

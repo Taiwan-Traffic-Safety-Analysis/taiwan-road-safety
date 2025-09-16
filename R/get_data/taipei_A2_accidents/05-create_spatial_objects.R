@@ -2,10 +2,51 @@ library(sf)
 library(ggplot2)
 library(leaflet)
 library(dplyr)
+library(archive)
 
 
+# Check to see if the shapefiles already exist
+# download them if they don't
 
-taiwan_villages <- st_read("/home/russ/Downloads/OFiles_567e47a5-8819-4ece-8dbc-6d68492611f8/VILLAGE_NLSC_1140620.shp")
+load_shapefiles <- function(){
+
+if(!dir.exists("data/shapefiles/villages")){
+  
+  # create a folder for caching the shape files
+  dir.create("data/shapefiles/villages", recursive = TRUE)
+  
+  # Define URL of the ZIP file containing shapefiles
+  zip_url <- "https://data.moi.gov.tw/MoiOD/System/DownloadFile.aspx?DATA=B8AF344F-B5C6-4642-AF46-1832054399CE"
+  
+  # Define local paths
+  zip_file <- tempfile(fileext = ".zip")
+  
+  # Download the ZIP file
+  download.file(zip_url, destfile = zip_file, mode = "wb")
+  
+  # Unzip the contents
+  archive::archive_extract(zip_file, dir = "data/shapefiles/villages")
+  
+  
+}
+
+
+# List all the  files in the villages folder
+files <- list.files("data/shapefiles/villages", full.names = TRUE)
+
+# Find the .shp file in the extracted files
+shp_file <- files[grepl("NLSC_.*\\.shp$", files)][1]
+
+# Read the shapefile into an sf object
+taiwan_villages <- st_read(shp_file)
+
+taiwan_villages
+
+}
+
+taiwan_villages <- load_shapefiles()
+
+#taiwan_villages <- st_read("/home/russ/Downloads/OFiles_567e47a5-8819-4ece-8dbc-6d68492611f8/VILLAGE_NLSC_1140620.shp")
 
 taipei_villages <- taiwan_villages |>
   filter(COUNTYNAME == "臺北市")

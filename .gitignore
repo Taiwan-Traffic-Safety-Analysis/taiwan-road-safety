@@ -54,3 +54,7 @@ API/
 # Ignore data folder because things are taking forever with it
 # Never mind. We're going to eventually switch to a database 
 # data/
+
+# Ignore the shape files in the data folder 
+# The user will have them cached locally
+data/shapefiles/
