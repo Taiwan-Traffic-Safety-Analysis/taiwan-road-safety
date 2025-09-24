@@ -55,6 +55,14 @@ API/
 # Never mind. We're going to eventually switch to a database 
 # data/
 
+
+# Ignore cached data
+
 # Ignore the shape files in the data folder 
 # The user will have them cached locally
 data/shapefiles/
+
+# accidents
+data/taipei_accidents/
+
+

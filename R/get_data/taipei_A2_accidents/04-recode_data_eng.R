@@ -852,6 +852,7 @@ taipei_accidents_eng <- taipei_accidents_zh |>
   
   select(incident_date = 發生日期,
          incident_time = 發生時間,
+         incident_datetime = 發生日期時間,
          incident_year = 發生年度,
          incident_month = 發生月,
          incident_day = 發生日,
