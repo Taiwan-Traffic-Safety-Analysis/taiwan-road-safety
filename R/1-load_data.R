@@ -8,41 +8,34 @@ source("R/config/packages.R")
 # to change this to FALSE
 USE_CACHED_DATA <- TRUE
 
-# Only change this if you want to save the data somewhere else
-# (not recommended)
-ACCIDENT_DATA_FOLDER <- "data/taipei_accidents"
-WEATHER_DATA_FOLDER <- "data/weather"
 
-ACCIDENT_SCRIPTS_FOLDER <- "R/get_data/taipei_A2_accidents"
-WEATHER_SCRIPTS_FOLDER <- "R/get_data/weather"
-
-load_data <- function(DATA_FOLDER,
-                      SCRIPTS_FOLDER,
-                      USE_CACHED_DATA){
+load_data <- function(data_folder,
+                      scripts_folder,
+                      use_cached_data){
 
 # Load Taipei Data
-if(USE_CACHED_DATA){
+if(use_cached_data){
   
   
   # create a folder if it doesn't exist
-  if(!dir.exists(DATA_FOLDER)){
-    dir.create(DATA_FOLDER, recursive = TRUE)
+  if(!dir.exists()){
+    dir.create(data_folder, recursive = TRUE)
   }
   
   
   # check to see if files are already in folder
-  if(length(list.files(DATA_FOLDER)) > 0){
+  if(length(list.files(data_folder)) > 0){
     
     print("Using Cached data!")
     
-    for(f in list.files(DATA_FOLDER,
+    for(f in list.files(data_folder,
                         full.names = TRUE)){
       
       # define a regex expresion
       # to get the file name 
       # without folders or extensions
       regex_exp <- paste0("(?<=",
-                          DATA_FOLDER,
+                          data_folder,
                           "/).*?(?=\\.)")
       
       # extract the file name 
@@ -69,7 +62,7 @@ if(USE_CACHED_DATA){
   } else {
     
     # call all the scripts to load data
-    for(f in list.files(SCRIPTS_FOLDER,
+    for(f in list.files(scripts_folder,
                         full.names = TRUE)){
       
       source(f)
@@ -84,7 +77,7 @@ if(USE_CACHED_DATA){
   # lol
   
   # call all the scripts to load data
-  for(f in list.files(SCRIPTS_FOLDER,
+  for(f in list.files(scripts_folder,
                       full.names = TRUE)){
     
     source(f)
@@ -95,21 +88,25 @@ if(USE_CACHED_DATA){
 
 }
 
+
+
 # Load accidents data
-load_data(DATA_FOLDER = ACCIDENT_DATA_FOLDER,
-          SCRIPTS_FOLDER = ACCIDENT_SCRIPTS_FOLDER,
-          USE_CACHED_DATA = USE_CACHED_DATA)
+load_data(data_folder = "data/taipei_accidents",
+          scripts_folder = "R/get_data/taipei_A2_accidents",
+          use_cached_data = USE_CACHED_DATA)
 
 # Load weather data
-load_data(DATA_FOLDER = WEATHER_DATA_FOLDER,
-          SCRIPTS_FOLDER = WEATHER_SCRIPTS_FOLDER,
-          USE_CACHED_DATA = USE_CACHED_DATA)
+load_data(data_folder = "data/weather",
+          scripts_folder = "R/get_data/weather",
+          use_cached_data = USE_CACHED_DATA)
 
-rm(list = c("ACCIDENT_DATA_FOLDER",
-            "ACCIDENT_SCRIPTS_FOLDER",
-            "USE_CACHED_DATA",
-            "WEATHER_DATA_FOLDER",
-            "WEATHER_SCRIPTS_FOLDER",
+# Load population data
+load_data(data_folder = "data/population_data",
+          scripts_folder = "R/get_data/population_data",
+          use_cached_data = USE_CACHED_DATA)
+
+rm(list = c("USE_CACHED_DATA",
+
             "load_data", 
             "load_shapefiles",
             "read_Big5_csv"))
