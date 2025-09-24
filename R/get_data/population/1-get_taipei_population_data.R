@@ -17,7 +17,7 @@ taipei_pop_2024_url <- "https://www-ws.gov.taipei/Download.ashx?u=LzAwMS9VcGxvYW
 
 load_population <- function(data_url){
   
-  data_location <- "data/population_data"
+  data_location <- "data/population"
   
   if(!dir.exists(data_location)){
     
@@ -63,7 +63,7 @@ taipei_pop_2024_zh <- load_population(taipei_pop_2024_url)
 
 # write to file
 write.csv(taipei_pop_2024_zh, 
-          "data/population_data/taipei_pop_2024_zh.csv",
+          "data/population/taipei_pop_2024_zh.csv",
           row.names = FALSE )
 
 

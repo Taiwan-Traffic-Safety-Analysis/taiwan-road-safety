@@ -101,8 +101,8 @@ load_data(data_folder = "data/weather",
           use_cached_data = USE_CACHED_DATA)
 
 # Load population data
-load_data(data_folder = "data/population_data",
-          scripts_folder = "R/get_data/population_data",
+load_data(data_folder = "data/population",
+          scripts_folder = "R/get_data/population",
           use_cached_data = USE_CACHED_DATA)
 
 rm(list = c("USE_CACHED_DATA",
