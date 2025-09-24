@@ -2,35 +2,28 @@
 library(ggplot2)
 library(dplyr)
 
-taipei_accidents_df |>  
-  count(性別) |> 
+taipei_accidents_eng |>  
+  count(sex) |> 
   ggplot() + 
-  geom_col(aes(x=性別, y = n)) +
+  geom_col(aes(x=sex, y = n)) +
   scale_y_continuous(labels = scales::comma) + 
   labs(title = "Traffic Accidents by Gender - Taipei City", 
        y = "Number of Accidents", 
        x = "Gender")
 
 
-
-
-
-
-
-
-
 # Accidents by age (18 highlighted)
 
 
-taipei_accidents_df |>  
-  count(年齡) |>
-  filter(年齡 > 0) |>
+taipei_accidents_eng |>  
+  count(age) |>
+  filter(age > 0) |>
   
   # Add a value for 18
-  mutate(age_18 = ifelse(年齡 == 18,
+  mutate(age_18 = ifelse(age == 18,
                          "yes",
                          "no")) |>
-  ggplot(aes(x=年齡, y = n)) + 
+  ggplot(aes(x=age, y = n)) + 
   geom_col() +
   geom_col(aes(fill = age_18)) + 
   scale_fill_manual(values = c("no" = "gray70", 
@@ -38,7 +31,7 @@ taipei_accidents_df |>
                     guide = "none") +
   
   geom_text(
-    data = \(taipei_accidents_df) dplyr::filter(taipei_accidents_df, 年齡 == 18),
+    data = \(taipei_accidents_df) dplyr::filter(taipei_accidents_df, age == 18),
     aes(label = "18"),
     vjust = -0.5,
     color = "black",
