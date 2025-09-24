@@ -127,5 +127,5 @@ taipei_accidents_eng |>
   ) +
   
   scale_y_continuous(labels = scales::comma) + 
-  labs(title = "Age Adjusted Rate of Traffic Accidents - Taipei City", y = "Number of Accidents per 100,000", x = "Age")
+  labs(title = "2024 Age Adjusted Rate of Traffic Accidents - Taipei City", y = "Number of Accidents per 100,000", x = "Age")
   
