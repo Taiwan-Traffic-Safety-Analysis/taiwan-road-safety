@@ -65,4 +65,7 @@ data/shapefiles/
 # accidents
 data/taipei_accidents/
 
+# weather
+data/taipei_accidents/
+
 
