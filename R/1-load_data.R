@@ -1,9 +1,8 @@
 # This script calls other scripts that fetches and cleans
 # the data
 
-library(sf)
-library(stringr)
-library(data.table)
+# load packages
+source("R/config/packages.R")
 
 # by default it tries to used cached data
 # to change this to FALSE

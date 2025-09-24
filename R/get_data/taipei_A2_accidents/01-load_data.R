@@ -1,9 +1,9 @@
 #load packages
-pacman::p_load(dplyr,
-               rvest,
-               stringr,
-               data.table,
-               rdflib) 
+library(dplyr)
+library(rvest)
+library(stringr)
+library(data.table)
+library(rdflib) 
 
 
 
