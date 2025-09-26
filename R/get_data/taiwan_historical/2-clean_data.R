@@ -1,7 +1,7 @@
 
 
 
-taiwan_historical <- taiwan_historical |>
+taiwan_accidents_historical <- taiwan_accidents_historical |>
   
   # remove stuff from schema files
   filter(is.na(name),
@@ -21,7 +21,7 @@ taiwan_historical <- taiwan_historical |>
          is.na(發生時間) | !str_detect(發生時間, "事故類別：|資料提供日期："))
 
 
-old_format <- taiwan_historical |> 
+old_format <- taiwan_accidents_historical |> 
   dplyr::filter(!is.na(車種)) |> 
   
   # remove completely na columns
@@ -85,7 +85,7 @@ old_format <- taiwan_historical |>
 #old_format_subset |> tidyr::separate_rows(車種, sep = ";") |> View()
 
 
-new_format <- taiwan_historical |> 
+new_format <- taiwan_accidents_historical |> 
   dplyr::filter(is.na(車種)) |> 
   
   mutate(
@@ -137,7 +137,7 @@ new_format <- taiwan_historical |>
 
 
 
-taiwan_historical2 <- new_format  |> 
+taiwan_accidents_historical <- new_format  |> 
   bind_rows(old_format) |> 
   
   

@@ -18,7 +18,7 @@ urls <- c("2024" = "https://data.gov.tw/dataset/172969",
 
 
 
-taiwan_historical <- lapply(urls, read_dcat) |> bind_rows()
+taiwan_accidents_historical <- lapply(urls, read_dcat) |> bind_rows()
 
 
 
