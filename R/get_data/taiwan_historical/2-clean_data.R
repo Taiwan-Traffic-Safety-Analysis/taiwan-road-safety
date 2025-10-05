@@ -153,6 +153,13 @@ taiwan_accidents_historical <- new_format  |>
          
   ) 
 
+if(!dir.exists("data/taiwan_accidents")) {
+  dir.create("data/taiwan_accidents")
+}
+
+
+fwrite(taiwan_accidents_historical, 
+       "data/taiwan_accidents/taiwan_accidents_historical_raw.csv")
 
 
 
