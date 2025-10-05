@@ -6,6 +6,8 @@ library(rdflib)
 # load needed functions
 source("R/functions/read_dcat_taiwan_opendata.R")
 
+# These are links to all the traffic data for Taiwan
+# from the open data portal
 
 urls <- c("2024" = "https://data.gov.tw/dataset/172969",
           "2023" = "https://data.gov.tw/dataset/167905",
