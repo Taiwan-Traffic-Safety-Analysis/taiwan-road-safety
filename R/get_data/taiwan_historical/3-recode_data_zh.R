@@ -799,7 +799,7 @@ taiwan_accidents_historical_zh <- taiwan_accidents_historical |>
          發生時間,
          發生日期時間,
          發生年度,
-         發生月,
+         發生月份,
          發生日,
          發生時_Hours = `發生時-Hours`,
          發生分,
