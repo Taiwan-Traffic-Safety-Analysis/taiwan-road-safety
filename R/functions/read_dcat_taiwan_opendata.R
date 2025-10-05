@@ -1,3 +1,4 @@
+library(archive)
 library(stringr)
 library(data.table)
 library(httr)
@@ -6,6 +7,8 @@ library(dplyr)
 library(rdflib)
 
 read_dcat <- function(url){
+  
+  #url <- urls[1]
   
   
   # extract just the dataset id from the entire url
@@ -38,6 +41,7 @@ data_list <- list()
  
  for(i in 1:nrow(query_results)){
    
+   #i <- 1
    
    url <- query_results[i,] |> 
      pull(downloadURL)
@@ -57,25 +61,35 @@ data_list <- list()
    
    if(encoding == "UTF-8" & (mime == "text/csv" | mime == "application/vnd.ms-excel" )){
      
+     print("reading as csv file using UTF-8 encoding")
+     
      data_list[[i]] <- lapply(fread(tmp), as.character)
      
    } else if(encoding == "BIG5" & (mime == "text/csv" | mime == "application/vnd.ms-excel" )){
-
+     
+     print("reading as csv file using BIG5 encoding")
+     
      data_list[[i]] <- lapply(read.csv(tmp, fileEncoding = "BIG5", stringsAsFactors = FALSE), as.character)
 
    } else if(mime == "application/json"){
+     
+     print("reading as json file, assuming default encoding")
      
      data_list[[i]] <- lapply(jsonlite::fromJSON(tmp), as.character)
      
    } else if(mime == "application/zip"){
      
+     print("reading as zip file, assuming default encoding")
+     
      zipped_data_list <- list()
      
      unzip_dir <- tempdir()
-     unzipped_files <- unzip(tmp, exdir = unzip_dir)
+     unzipped_files <- archive::archive_extract(tmp, dir = unzip_dir)
+     
+     unzipped_files_full_paths <- paste0(unzip_dir, "\\", unzipped_files)
      
      # Try to find first CSV file in zip
-     csv_files <- unzipped_files[str_detect( unzipped_files, "\\.csv$")]
+     csv_files <- unzipped_files_full_paths[str_detect( unzipped_files_full_paths, "\\.csv$")]
      
      if(length(csv_files) < 1) { 
        print(unzipped_files)
