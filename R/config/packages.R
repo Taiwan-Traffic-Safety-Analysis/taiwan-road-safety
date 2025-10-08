@@ -6,6 +6,7 @@ if(!require("pacman")){
 
 
 pacman::p_load(archive,
+               curl,  # Only really needed for linux?
                data.table,
                dplyr,
                forcats,
@@ -16,6 +17,7 @@ pacman::p_load(archive,
                jsonlite,
                rdflib,
                readODS,
+               redland, # for linux
                rvest,
                scales,
                sf,

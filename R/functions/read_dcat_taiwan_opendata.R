@@ -86,7 +86,7 @@ data_list <- list()
      unzip_dir <- tempdir()
      unzipped_files <- archive::archive_extract(tmp, dir = unzip_dir)
      
-     unzipped_files_full_paths <- paste0(unzip_dir, "\\", unzipped_files)
+     unzipped_files_full_paths <- paste0(unzip_dir, "/", unzipped_files)
      
      # Try to find first CSV file in zip
      csv_files <- unzipped_files_full_paths[str_detect( unzipped_files_full_paths, "\\.csv$")]
