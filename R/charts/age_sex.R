@@ -3,7 +3,7 @@ library(ggplot2)
 library(dplyr)
 
 # read in age structure data for Taipei
-taipei_pop_2024_zh <- read.csv("data/population_data/taipei_pop_2024_zh.csv" )
+taipei_pop_2024_zh <- read.csv("data/population/taipei_pop_2024_zh.csv" )
 
 taipei_accidents_eng |>  
   count(sex) |> 
