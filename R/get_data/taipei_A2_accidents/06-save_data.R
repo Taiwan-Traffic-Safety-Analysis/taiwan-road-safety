@@ -4,6 +4,11 @@ library(data.table)
 # save the data we want to keep to the cached data folder
 DATA_FOLDER <- "data/taipei_accidents"
 
+# Create the data folder if it doesn't exist
+if(!dir.exists(DATA_FOLDER)){
+  dir.create(DATA_FOLDER, recursive = TRUE)
+}
+
 # csv
 fwrite(taipei_accidents_eng, paste0(DATA_FOLDER, "/taipei_accidents_eng.csv"))
 fwrite(taipei_accidents_zh, paste0(DATA_FOLDER, "/taipei_accidents_zh.csv"))

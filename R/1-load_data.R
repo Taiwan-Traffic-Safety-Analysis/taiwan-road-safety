@@ -18,7 +18,7 @@ if(use_cached_data){
   
   
   # create a folder if it doesn't exist
-  if(!dir.exists()){
+  if(!dir.exists(data_folder)){
     dir.create(data_folder, recursive = TRUE)
   }
   
