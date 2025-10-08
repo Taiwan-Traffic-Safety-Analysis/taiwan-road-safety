@@ -1,4 +1,4 @@
-pacman::p_load(tidyverse, #for stringr, dyplr & lubridate
+taipacman::p_load(tidyverse, #for stringr, dyplr & lubridate
                rvest, #for webscraping
                data.table, #for fast import and manupulation of .csv
                rdflib,
@@ -11,6 +11,8 @@ pacman::p_load(tidyverse, #for stringr, dyplr & lubridate
     
     # left join with weather
     taipei_accidents_eng_weather <- taipei_accidents_eng %>%  
+      mutate(
+        incident_date = as.Date(incident_datetime)) %>%
       left_join(weather_history_taipei_daily, by=c("incident_date" = "date")) %>% 
       left_join(weather_history_taipei_hourly,
                 by=c("incident_datetime" = "datetime")) %>% 
